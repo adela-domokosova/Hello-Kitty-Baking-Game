@@ -3,6 +3,6 @@ module com.example.hellokittyadventura {
     requires javafx.fxml;
 
 
-    opens com.example.hellokittyadventura to javafx.fxml;
-    exports com.example.hellokittyadventura;
+    opens com.example.hellokittyadventura.main to javafx.fxml;
+    exports com.example.hellokittyadventura.main;
 }

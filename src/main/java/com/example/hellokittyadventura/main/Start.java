@@ -6,6 +6,14 @@ package com.example.hellokittyadventura.main;
 import com.example.hellokittyadventura.logika.IHra;
 import com.example.hellokittyadventura.logika.Hra;
 import com.example.hellokittyadventura.uiText.TextoveRozhrani;
+import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 
 
 /*******************************************************************************
@@ -15,7 +23,7 @@ import com.example.hellokittyadventura.uiText.TextoveRozhrani;
  * @author    Jarmila Pavlíčková
  * @version   ZS 2016/2017
  */
-public class Start
+public class Start extends Application
 {
     /***************************************************************************
      * Metoda, prostřednictvím níž se spouští celá aplikace.
@@ -24,9 +32,25 @@ public class Start
      */
     public static void main(String[] args)
     {
-        
-        IHra hra = new Hra();
-        TextoveRozhrani ui = new TextoveRozhrani(hra);
-        ui.hraj();
+        if(args.length>0 && args[0].equals(("text"))){
+            IHra hra = new Hra();
+            TextoveRozhrani ui = new TextoveRozhrani(hra);
+            ui.hraj();
+            Platform.exit();
+        }else{
+            launch();
+        }
+
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception {
+        FXMLLoader loader = new FXMLLoader();
+        loader.setLocation(getClass().getResource("home.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.setTitle("Hello Kitty: Baking game");
     }
 }
