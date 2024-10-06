@@ -187,16 +187,10 @@ public class HraTest {
         Assertions.assertEquals(false, this.hra1.getHerniPlan().getOdevzdaneWinList().containsKey("test3"));
         Assertions.assertEquals("test, ", this.hra1.getHerniPlan().odevzdane());
     }
-    @Test
-    public void testAhojMlýn(){
-        this.hra1.zpracujPrikaz("jdi zahrada");
-        this.hra1.zpracujPrikaz("jdi mlýn");
-        this.hra1.getHerniPlan().getAktualniProstor().setProselTrue();
-        Assertions.assertEquals("Nikdo tady už není, vrať se jindy",  this.hra1.zpracujPrikaz("ahoj"));
-    }
+
     @Test
     public void testAhojJinde(){
-        Assertions.assertEquals("Zkus to jinde",  this.hra1.zpracujPrikaz("ahoj"));
+        Assertions.assertEquals("Nevím co tím myslíš? Tento příkaz neznám. ",  this.hra1.zpracujPrikaz("ahoj"));
 
     }
     @Test
