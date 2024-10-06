@@ -7,4 +7,4 @@ sestaveni:
     paths:
       - "target/*.zip"
   only:
-    - master
+    - main
