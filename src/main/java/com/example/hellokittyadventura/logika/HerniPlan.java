@@ -118,6 +118,13 @@ public class HerniPlan {
         Vec mouka = new Vec("mouka", "mouka", true,true);
         mlyn.pridatVec(mouka);
 
+//        inventar.vlozVec(mouka);
+//        inventar.vlozVec(jablka);
+//        inventar.vlozVec(skorice);
+//        inventar.vlozVec(vejce1);
+//        inventar.vlozVec(vejce2);
+//        inventar.vlozVec(vejce3);
+
         /** Vložení předmětů do WinList
          *  tímto listem lze snadno měnit podmínky pro výhru hráče
          *  Slouží k porovnání předmětů, které hráč už odevzdal a které ještě potřebuje odevzdat**/
