@@ -5,10 +5,9 @@ import com.example.hellokittyadventura.logika.IHra;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
+import java.util.Optional;
 
 public class HomeController {
     @FXML
@@ -42,5 +41,16 @@ public class HomeController {
             vstup.setDisable(true);
             tlacitkoOdesli.setDisable(true);
         }
+    }
+
+    @FXML
+    private void ukoncitHru(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to end the current game??");
+        Optional<ButtonType> result = alert.showAndWait();
+        if(result.isPresent() && result.get() == ButtonType.OK){
+            //bezpečně ukončit javaFX app
+            Platform.exit();
+        }
+
     }
 }
