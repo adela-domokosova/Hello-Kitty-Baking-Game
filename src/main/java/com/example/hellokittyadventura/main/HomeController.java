@@ -2,7 +2,11 @@ package com.example.hellokittyadventura.main;
 
 import com.example.hellokittyadventura.logika.Hra;
 import com.example.hellokittyadventura.logika.IHra;
+import com.example.hellokittyadventura.logika.Prostor;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableArrayBase;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,15 +15,18 @@ import java.util.Optional;
 
 public class HomeController {
     @FXML
+    private ListView panelVychodu;
+    @FXML
     private Button tlacitkoOdesli;
     @FXML
     private TextArea vystup;
     @FXML
     private TextField vstup;
 
-    @FXML
-    private IHra hra = new Hra();
 
+    private IHra hra = new Hra();
+    @FXML
+    private ObservableList<Prostor> seznamVychodu = FXCollections.observableArrayList();
 
     //po vytvoření všech prvků FX se zavolá inicializátor,
     //rozdil od konstruktoru
@@ -27,8 +34,16 @@ public class HomeController {
     private void initialize(){
         vystup.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
+        panelVychodu.setItems(seznamVychodu);
+        //seznamVychodu.addListener(aktualizujSeznamVychodu());
     }
 
+
+    @FXML
+    private void aktualizujSeznamVychodu(){
+        seznamVychodu.clear();
+        seznamVychodu.addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
+    }
     @FXML
     private void odesliVstup(ActionEvent actionEvent) {
         String prikaz = vstup.getText();
