@@ -1,6 +1,9 @@
 package com.example.hellokittyadventura.logika;
 
 
+import com.example.hellokittyadventura.main.Pozorovatel;
+import com.example.hellokittyadventura.main.PredmetPozorovani;
+
 import java.util.*;
 
 /**
@@ -14,7 +17,7 @@ import java.util.*;
  *@author     Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
  *@version    pro školní rok 2016/2017
  */
-public class HerniPlan {
+public class HerniPlan implements PredmetPozorovani {
     
     private Prostor aktualniProstor;
     private final Inventar inventar = new Inventar();//Vytváří hráčův inventář
@@ -25,8 +28,9 @@ public class HerniPlan {
      * odevzdaneWinList obsahuje předměty, které hráč už odevzdal a jdou potřebné pro výhru**/
     private Map<String, Vec> winList= new HashMap<>();//Vytváří seznam předmětů potřebných pro výhru = winning conditions
     private Map<String,Vec> odevzdaneWinList = new HashMap<>();//Do odevzdaneWinList se přidávají předměty příkazem odevzdat
-    
-     /**
+    private Set<Pozorovatel> seznamPozorovatelu = new HashSet<>();
+
+    /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
      *  Jako výchozí aktuální prostor nastaví halu.
      */
@@ -154,6 +158,9 @@ public class HerniPlan {
     /**Metoda pro nastavení nového prostoru, ve kterém se hráč nachází, při přecházení mezi prostory**/
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
+       for(Pozorovatel pozorovatel : seznamPozorovatelu){
+           pozorovatel.aktualizuj();
+       }
     }
 
     /**List, který určuje podmínky pro vítězství hráče. Tedy jaké předměty musí odevzdat v průběhu hry**/
@@ -206,5 +213,10 @@ public class HerniPlan {
         vejceArray.add(this.getProstory().get("none").getVeci().get("vejce2"));
         vejceArray.add(this.getProstory().get("none").getVeci().get("vejce3"));
         return vejceArray;
+    }
+
+    @Override
+    public void registruj(Pozorovatel pozorovatel) {
+        seznamPozorovatelu.add(pozorovatel);
     }
 }
