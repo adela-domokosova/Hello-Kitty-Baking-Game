@@ -3,6 +3,7 @@ package com.example.hellokittyadventura.logika;
 
 import com.example.hellokittyadventura.main.Pozorovatel;
 import com.example.hellokittyadventura.main.PredmetPozorovani;
+import com.example.hellokittyadventura.main.ZmenaHry;
 
 import java.util.*;
 
@@ -28,7 +29,7 @@ public class HerniPlan implements PredmetPozorovani {
      * odevzdaneWinList obsahuje předměty, které hráč už odevzdal a jdou potřebné pro výhru**/
     private Map<String, Vec> winList= new HashMap<>();//Vytváří seznam předmětů potřebných pro výhru = winning conditions
     private Map<String,Vec> odevzdaneWinList = new HashMap<>();//Do odevzdaneWinList se přidávají předměty příkazem odevzdat
-    private Set<Pozorovatel> seznamPozorovatelu = new HashSet<>();
+    private Map<ZmenaHry, Set<Pozorovatel>> seznamPozorovatelu = new HashMap<>();
 
     /**
      *  Konstruktor který vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -36,7 +37,9 @@ public class HerniPlan implements PredmetPozorovani {
      */
     public HerniPlan() {
         zalozProstoryHry();
-
+        for(ZmenaHry zmenaHry : ZmenaHry.values()){
+            seznamPozorovatelu.put(zmenaHry, new HashSet<>());
+        }
     }
     /**
      *  Vytváří jednotlivé prostory a propojuje je pomocí východů.
@@ -158,10 +161,14 @@ public class HerniPlan implements PredmetPozorovani {
     /**Metoda pro nastavení nového prostoru, ve kterém se hráč nachází, při přecházení mezi prostory**/
     public void setAktualniProstor(Prostor prostor) {
        aktualniProstor = prostor;
-       for(Pozorovatel pozorovatel : seznamPozorovatelu){
-           pozorovatel.aktualizuj();
+       upozorneniPozorovatele(ZmenaHry.ZMENA_MISTNOSTI);
        }
+
+    private void upozorneniPozorovatele(ZmenaHry zmenaHry) {
+        for(Pozorovatel pozorovatel : seznamPozorovatelu.get(zmenaHry)){
+            pozorovatel.aktualizuj();
     }
+}
 
     /**List, který určuje podmínky pro vítězství hráče. Tedy jaké předměty musí odevzdat v průběhu hry**/
     public void pridatDoWinList(Vec vec){
@@ -216,7 +223,7 @@ public class HerniPlan implements PredmetPozorovani {
     }
 
     @Override
-    public void registruj(Pozorovatel pozorovatel) {
-        seznamPozorovatelu.add(pozorovatel);
+    public void registruj(ZmenaHry zmenaHry, Pozorovatel pozorovatel) {
+        seznamPozorovatelu.get(zmenaHry).add(pozorovatel);
     }
 }

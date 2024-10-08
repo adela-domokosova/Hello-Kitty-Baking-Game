@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.util.Optional;
 
-public class HomeController implements Pozorovatel{
+public class HomeController{
     @FXML
     private ListView<Prostor> panelVychodu;
     @FXML
@@ -37,9 +37,9 @@ public class HomeController implements Pozorovatel{
         vystup.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
         panelVychodu.setItems(seznamVychodu);
-        hra.getHerniPlan().registruj(this);
+        hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> aktualizujSeznamVychodu());
+        hra.registruj(ZmenaHry.KONEC_HRY, () -> aktualizujKonecHry());
         aktualizujSeznamVychodu();
-        //seznamVychodu.addListener(aktualizujSeznamVychodu());
     }
 
 
@@ -61,13 +61,6 @@ public class HomeController implements Pozorovatel{
             vystup.appendText("> " + prikaz + "\n");
             String vysledek = hra.zpracujPrikaz(prikaz);
             vystup.appendText(vysledek + "\n\n");
-
-            if (hra.konecHry()) {
-                vystup.appendText(hra.vratEpilog());
-                vstup.setDisable(true);
-                tlacitkoOdesli.setDisable(true);
-                panelVychodu.setDisable(true);
-            }
         }
 
     @FXML
@@ -81,9 +74,13 @@ public class HomeController implements Pozorovatel{
 
     }
 
-    @Override
-    public void aktualizuj() {
-        aktualizujSeznamVychodu();
+    private void aktualizujKonecHry() {
+        if (hra.konecHry()) {
+            vystup.appendText(hra.vratEpilog());
+        }
+            vstup.setDisable(true);
+            tlacitkoOdesli.setDisable(true);
+            panelVychodu.setDisable(true);
     }
 
     @FXML

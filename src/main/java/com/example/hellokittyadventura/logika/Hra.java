@@ -1,5 +1,14 @@
 package com.example.hellokittyadventura.logika;
 
+import com.example.hellokittyadventura.main.Pozorovatel;
+import com.example.hellokittyadventura.main.PredmetPozorovani;
+import com.example.hellokittyadventura.main.ZmenaHry;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  *  Třída Hra - třída představující logiku adventury.
  * 
@@ -16,6 +25,7 @@ public class Hra implements IHra {
     private SeznamPrikazu platnePrikazy;    // obsahuje seznam přípustných příkazů
     private HerniPlan herniPlan;
     private boolean konecHry = false;
+    private Map<ZmenaHry, Set<Pozorovatel>> seznamPozorovatelu = new HashMap<>();
 
     /**
      *  Vytváří hru a inicializuje místnosti (prostřednictvím třídy HerniPlan) a seznam platných příkazů.
@@ -33,6 +43,9 @@ public class Hra implements IHra {
         platnePrikazy.vlozPrikaz(new PrikazOtevrit(herniPlan));
         platnePrikazy.vlozPrikaz(new PrikazOdevzdat(herniPlan, this));
         platnePrikazy.vlozPrikaz(new PrikazPomoc(herniPlan));
+        for(ZmenaHry zmenaHry : ZmenaHry.values()){
+            seznamPozorovatelu.put(zmenaHry, new HashSet<>());
+        }
     }
 
     /**
@@ -95,6 +108,7 @@ public class Hra implements IHra {
      */
     void setKonecHry(boolean konecHry) {
         this.konecHry = konecHry;
+        upozorneniPozorovatele(ZmenaHry.KONEC_HRY);
     }
     
      /**
@@ -106,6 +120,15 @@ public class Hra implements IHra {
      public HerniPlan getHerniPlan(){
         return herniPlan;
      }
-    
+
+    private void upozorneniPozorovatele(ZmenaHry zmenaHry) {
+        for(Pozorovatel pozorovatel : seznamPozorovatelu.get(zmenaHry)){
+            pozorovatel.aktualizuj();
+        }
+    }
+    @Override
+    public void registruj(ZmenaHry zmenaHry, Pozorovatel pozorovatel) {
+        seznamPozorovatelu.get(zmenaHry).add(pozorovatel);
+    }
 }
 
