@@ -9,19 +9,24 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellokittyadventura.main.HomeController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellokittyadventura.main.HomeController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints vgrow="NEVER" />
+      <RowConstraints percentHeight="0.0" vgrow="NEVER" />
+    <RowConstraints vgrow="SOMETIMES" />
+      <RowConstraints vgrow="NEVER" />
   </rowConstraints>
    <children>
       <MenuBar GridPane.vgrow="NEVER">
@@ -29,12 +34,45 @@
           <Menu mnemonicParsing="false" text="Hra">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" text="Ukončit" />
-                <MenuItem onAction="#aktualizujSeznamVychodu" text="prostory"/>
+                <MenuItem onAction="#aktualizujSeznamVychodu" text="prostory" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <HBox prefWidth="602.0" spacing="10.0" GridPane.rowIndex="2">
+      <TitledPane text="Mapa" GridPane.rowIndex="1">
+         <content>
+            <HBox alignment="TOP_CENTER">
+               <children>
+                  <Pane>
+                     <children>
+                        <ImageView fitHeight="296.0" fitWidth="380.0" layoutY="-12.0">
+                           <image>
+                              <Image url="@mapa_bit.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="203.0" layoutY="64.0">
+                           <image>
+                              <Image url="@../../../../../../../../../../../Downloads/pngwing.com.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
+                  </Pane>
+               </children>
+            </HBox>
+         </content>
+      </TitledPane>
+       <SplitPane dividerPositions="0.5" GridPane.rowIndex="2">
+           <ListView fx:id="panelVychodu" onMouseClicked="#klikPanelVychodu" />
+           <TextArea fx:id="vystup" editable="false">
+               <padding>
+                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
+           </TextArea>
+       </SplitPane>
+      <HBox spacing="10.0" GridPane.rowIndex="3">
          <children>
             <TextField fx:id="vstup" onAction="#odesliVstup" HBox.hgrow="ALWAYS">
                <HBox.margin>
@@ -60,13 +98,5 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </HBox>
-       <SplitPane dividerPositions="0.3" GridPane.rowIndex="1">
-           <TextArea fx:id="vystup" editable="false">
-               <padding>
-                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-           </TextArea>
-           <ListView onMouseClicked="#klikPanelVychodu" fx:id="panelVychodu" />
-       </SplitPane>
    </children>
 </GridPane>
