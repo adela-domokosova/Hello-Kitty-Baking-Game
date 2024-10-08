@@ -61,6 +61,7 @@
                      </HBox.margin>
                   </Pane>
                   <ListView fx:id="panelPredmetu" prefHeight="200.0" prefWidth="200.0" />
+                  <ListView fx:id="panelRozkazu" layoutX="492.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0" />
                </children>
             </HBox>
          </content>

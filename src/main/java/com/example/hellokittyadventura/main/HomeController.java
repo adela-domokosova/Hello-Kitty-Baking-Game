@@ -2,6 +2,7 @@ package com.example.hellokittyadventura.main;
 
 import com.example.hellokittyadventura.logika.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArrayBase;
 import javafx.collections.ObservableList;
@@ -14,12 +15,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
 public class HomeController{
+    @FXML
+    public ListView<String> panelRozkazu;
     @FXML
     private ListView<Vec> panelPredmetu;
     @FXML
@@ -36,6 +38,11 @@ public class HomeController{
     private ObservableList<Prostor> seznamVychodu = FXCollections.observableArrayList();
     @FXML
     private ObservableList<Vec> seznamPredmetu = FXCollections.observableArrayList();
+    @FXML
+    private SimpleStringProperty selectedString = new SimpleStringProperty();
+
+    @FXML
+    private ObservableList<String> seznamRozkazu = FXCollections.observableArrayList();
 
     private IHra hra = new Hra();
     private Map<String, Point2D> souradniceProstoru = new HashMap<>();
@@ -47,7 +54,10 @@ public class HomeController{
         vystup.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
         panelVychodu.setItems(seznamVychodu);
-        panelPredmetu.setItems(hra.getHerniPlan().getAktualniProstor().getVeci().values());
+        aktualizujSeznamPredmetu();
+        panelPredmetu.setItems(seznamPredmetu);
+        aktualizujSeznamRozkazu();
+        panelRozkazu.setItems(seznamRozkazu);
         hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {
             aktualizujSeznamVychodu();
             aktualizujPolohuHrace();
@@ -88,6 +98,13 @@ public class HomeController{
         seznamPredmetu.clear();
         seznamPredmetu.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
     }
+
+    @FXML
+    private void aktualizujSeznamRozkazu(){
+        seznamRozkazu.clear();
+        seznamRozkazu.addAll("seber", "otevrit", "zatrast");
+    }
+
 
     @FXML
     private void odesliVstup(ActionEvent actionEvent) {
@@ -132,6 +149,7 @@ public class HomeController{
      zpracujPrikaz(prikaz);
 
     }
+
 
     @FXML
     private void napovedaKlik(ActionEvent actionEvent) {
