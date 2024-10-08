@@ -47,12 +47,12 @@
                      <children>
                         <ImageView fitHeight="254.0" fitWidth="344.0">
                            <image>
-                              <Image url="@mapa_bit.png" />
+                              <Image url="@plan a postavy/mapa_bit.png" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="hrac" fitHeight="59.0" fitWidth="64.0" layoutX="172.0" layoutY="68.0">
                            <image>
-                              <Image url="@pngwing.com.png" />
+                              <Image url="@plan a postavy/pngwing.com.png" />
                            </image>
                         </ImageView>
                      </children>
