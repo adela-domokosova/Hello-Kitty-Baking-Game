@@ -50,7 +50,7 @@
                               <Image url="@mapa_bit.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="122.0" fitWidth="140.0" layoutX="141.0" layoutY="24.0">
+                        <ImageView fx:id="hrac" fitHeight="59.0" fitWidth="64.0" layoutX="172.0" layoutY="68.0">
                            <image>
                               <Image url="@pngwing.com.png" />
                            </image>
