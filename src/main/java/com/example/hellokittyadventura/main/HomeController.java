@@ -1,9 +1,6 @@
 package com.example.hellokittyadventura.main;
 
-import com.example.hellokittyadventura.logika.Hra;
-import com.example.hellokittyadventura.logika.IHra;
-import com.example.hellokittyadventura.logika.PrikazJdi;
-import com.example.hellokittyadventura.logika.Prostor;
+import com.example.hellokittyadventura.logika.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArrayBase;
@@ -18,11 +15,11 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class HomeController{
+    @FXML
+    private ListView<Vec> panelPredmetu;
     @FXML
     private ImageView hrac;
     @FXML
@@ -37,7 +34,11 @@ public class HomeController{
     private ObservableList<Prostor> seznamVychodu = FXCollections.observableArrayList();
 
     private IHra hra = new Hra();
+    private Inventar inv = new Inventar();
     private Map<String, Point2D> souradniceProstoru = new HashMap<>();
+    private List<String> veciInventar = new ArrayList<>();
+    private ObservableList<Vec> seznamVeci = FXCollections.observableArrayList();
+
 
     //po vytvoření všech prvků FX se zavolá inicializátor,
     //rozdil od konstruktoru
@@ -46,14 +47,29 @@ public class HomeController{
         vystup.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
         panelVychodu.setItems(seznamVychodu);
+        panelPredmetu.setItems(seznamVeci);
         hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {aktualizujSeznamVychodu();
-            aktualizujPolohuHrace();});
+            aktualizujPolohuHrace();
+            aktualizujSeznamPredmetu();});
         hra.registruj(ZmenaHry.KONEC_HRY, () -> {aktualizujKonecHry();
         aktualizujPolohuHrace();});
+        //hra.getHerniPlan().registruj(ZmenaHry.ZMENA_INVENTARE, () -> {
+        //    aktualizujBatoh();
+        //});
+        hra.getHerniPlan().registruj(ZmenaHry.ZMENA_PROSTOR, () ->{
+            aktualizujVeci();
+
+        });
         aktualizujSeznamVychodu();
+        aktualizujSeznamPredmetu();
         vlozSouradniceProstoru();
         panelVychodu.setCellFactory(param -> new ListCellProstor());
     }
+
+    private void aktualizujVeci() {
+
+    }
+
 
     private void vlozSouradniceProstoru() {
         souradniceProstoru.put("kuchyň", new Point2D(179,58));
@@ -64,11 +80,7 @@ public class HomeController{
     }
 
 
-    @FXML
-    private void aktualizujSeznamVychodu(){
-        seznamVychodu.clear();
-        seznamVychodu.addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
-    }
+
 
     private void aktualizujPolohuHrace(){
         String prostor = hra.getHerniPlan().getAktualniProstor().getNazev();
@@ -120,6 +132,17 @@ public class HomeController{
 
     }
 
+    //jedna vrátí tu aktualini array se stringy těch png
+
+    @FXML
+    private List<String> aktualizujInventar(List<String> veciInventar){
+        return veciInventar;
+    }
+    //druha je přiřadí těm pozicím
+    //nejprve zobrazit itemy v prostoru
+    private void aktualizujBatoh() {
+        //aktualizujInventar()
+    }
     @FXML
     private void napovedaKlik(ActionEvent actionEvent) {
         Stage napovedaStage = new Stage();
@@ -128,5 +151,17 @@ public class HomeController{
         napovedaStage.setScene(napovedaScena);
         napovedaStage.show();
         wv.getEngine().load(getClass().getResource("napoveda.html").toExternalForm());
+    }
+    @FXML
+    private void aktualizujSeznamVychodu(){
+        seznamVychodu.clear();
+        seznamVychodu.addAll(hra.getHerniPlan().getAktualniProstor().getVychody());
+    }
+    @FXML
+    private void aktualizujSeznamPredmetu(){
+        seznamVeci.clear();
+        seznamVeci.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
+    }
+    public void klikPanelPredmetu(MouseEvent mouseEvent) {
     }
 }
