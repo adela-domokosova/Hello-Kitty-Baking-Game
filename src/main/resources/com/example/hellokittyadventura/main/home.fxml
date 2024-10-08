@@ -45,14 +45,14 @@
                <children>
                   <Pane>
                      <children>
-                        <ImageView fitHeight="296.0" fitWidth="380.0" layoutY="-12.0">
+                        <ImageView fitHeight="254.0" fitWidth="344.0">
                            <image>
                               <Image url="@mapa_bit.png" />
                            </image>
                         </ImageView>
-                        <ImageView fitHeight="59.0" fitWidth="62.0" layoutX="203.0" layoutY="64.0">
+                        <ImageView fitHeight="122.0" fitWidth="140.0" layoutX="141.0" layoutY="24.0">
                            <image>
-                              <Image url="@../../../../../../../../../../../Downloads/pngwing.com.png" />
+                              <Image url="@pngwing.com.png" />
                            </image>
                         </ImageView>
                      </children>
