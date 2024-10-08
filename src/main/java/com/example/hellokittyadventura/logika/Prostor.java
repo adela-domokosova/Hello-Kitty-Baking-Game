@@ -1,9 +1,5 @@
 package com.example.hellokittyadventura.logika;
 
-import com.example.hellokittyadventura.main.Pozorovatel;
-import com.example.hellokittyadventura.main.PredmetPozorovani;
-import com.example.hellokittyadventura.main.ZmenaHry;
-
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -19,7 +15,7 @@ import java.util.stream.Collectors;
  * @author Michael Kolling, Lubos Pavlicek, Jarmila Pavlickova
  * @version pro školní rok 2016/2017
  */
-public class Prostor implements PredmetPozorovani {
+public class Prostor {
     private String nazev;
     private String popis;
     private boolean jeZamcena;
@@ -27,8 +23,6 @@ public class Prostor implements PredmetPozorovani {
 
     private Set<Prostor> vychody; // obsahuje sousední místnosti
     private Map<String,Vec> veci = new HashMap<>(); //předměty v místnosti
-    private Map<ZmenaHry, Set<Pozorovatel>> seznamPozorovatelu = new HashMap<>();
-
 
     /**
      * Vytvoření prostoru se zadaným popisem, např. "kuchyň", "hala", "trávník
@@ -183,14 +177,12 @@ public class Prostor implements PredmetPozorovani {
      * použito hlavně ve prikazSebrat **/
     public Vec pridatVec(Vec vec) {
         veci.put(vec.getNazev(), vec);
-        upozorneniPozorovatele(ZmenaHry.ZMENA_PROSTOR);
         return vec;
     }
     /**Metoda odebírá věci (objekty) z prostoru/inventare
      * použito hlavně ve prikazSebrat **/
     public Vec odebratVec(String nazev) {
         Vec removedVec = veci.remove(nazev);
-        upozorneniPozorovatele(ZmenaHry.ZMENA_PROSTOR);
         return removedVec;
     }
     public String popisVeci(){
@@ -233,15 +225,5 @@ public class Prostor implements PredmetPozorovani {
     }
     public void setProselTrue() {
         this.prosel =true;
-    }
-
-    @Override
-    public void registruj(ZmenaHry zmenaHry, Pozorovatel pozorovatel) {
-        seznamPozorovatelu.get(zmenaHry).add(pozorovatel);
-    }
-    private void upozorneniPozorovatele(ZmenaHry zmenaHry) {
-        for(Pozorovatel pozorovatel : seznamPozorovatelu.get(zmenaHry)){
-            pozorovatel.aktualizuj();
-        }
     }
 }
