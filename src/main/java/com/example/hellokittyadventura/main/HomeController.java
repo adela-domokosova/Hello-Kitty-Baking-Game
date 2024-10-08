@@ -1,9 +1,6 @@
 package com.example.hellokittyadventura.main;
 
-import com.example.hellokittyadventura.logika.Hra;
-import com.example.hellokittyadventura.logika.IHra;
-import com.example.hellokittyadventura.logika.PrikazJdi;
-import com.example.hellokittyadventura.logika.Prostor;
+import com.example.hellokittyadventura.logika.*;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArrayBase;
@@ -24,6 +21,8 @@ import java.util.Optional;
 
 public class HomeController{
     @FXML
+    private ListView<Vec> panelPredmetu;
+    @FXML
     private ImageView hrac;
     @FXML
     private ListView<Prostor> panelVychodu;
@@ -35,6 +34,8 @@ public class HomeController{
     private TextField vstup;
     @FXML
     private ObservableList<Prostor> seznamVychodu = FXCollections.observableArrayList();
+    @FXML
+    private ObservableList<Vec> seznamPredmetu = FXCollections.observableArrayList();
 
     private IHra hra = new Hra();
     private Map<String, Point2D> souradniceProstoru = new HashMap<>();
@@ -46,13 +47,20 @@ public class HomeController{
         vystup.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
         panelVychodu.setItems(seznamVychodu);
-        hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {aktualizujSeznamVychodu();
-            aktualizujPolohuHrace();});
-        hra.registruj(ZmenaHry.KONEC_HRY, () -> {aktualizujKonecHry();
-        aktualizujPolohuHrace();});
+        panelPredmetu.setItems(hra.getHerniPlan().getAktualniProstor().getVeci().values());
+        hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {
+            aktualizujSeznamVychodu();
+            aktualizujPolohuHrace();
+            aktualizujSeznamPredmetu();
+        });
+        hra.registruj(ZmenaHry.KONEC_HRY, () -> {
+            aktualizujKonecHry();
+            aktualizujPolohuHrace();
+        });
         aktualizujSeznamVychodu();
         vlozSouradniceProstoru();
         panelVychodu.setCellFactory(param -> new ListCellProstor());
+        panelPredmetu.setCellFactory(param -> new ListCellVec());
     }
 
     private void vlozSouradniceProstoru() {
@@ -74,6 +82,11 @@ public class HomeController{
         String prostor = hra.getHerniPlan().getAktualniProstor().getNazev();
         hrac.setLayoutX(souradniceProstoru.get(prostor).getX());
         hrac.setLayoutY(souradniceProstoru.get(prostor).getY());
+    }
+    @FXML
+    private void aktualizujSeznamPredmetu(){
+        seznamPredmetu.clear();
+        seznamPredmetu.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
     }
 
     @FXML

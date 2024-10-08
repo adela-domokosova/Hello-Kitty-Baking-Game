@@ -208,6 +208,7 @@ public class Prostor {
         return false;
     }
 
+
     public Map<String, Vec> getVeci() {
         return this.veci;
     }

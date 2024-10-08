@@ -1,5 +1,6 @@
 package com.example.hellokittyadventura.main;
 
+import com.example.hellokittyadventura.logika.Vec;
 import javafx.scene.control.ListCell;
 import com.example.hellokittyadventura.logika.Prostor;
 import javafx.scene.image.ImageView;

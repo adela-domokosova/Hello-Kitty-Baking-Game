@@ -44,6 +44,10 @@ public class Vec {
     }//kontrola true/false
 
 
+    @Override
+    public String toString() {
+        return this.nazev;
+    }
 
     /**jestli jsou uvnitř veci uloženy další věci, metoda přijimá string a pomocí něj najde, je-li hledaná věc
      * uvnitř - ve hře použito při hledání věcí v lednici - příkaz sebrat**/
