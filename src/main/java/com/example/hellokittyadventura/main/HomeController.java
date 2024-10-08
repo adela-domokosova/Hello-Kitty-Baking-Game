@@ -49,6 +49,7 @@ public class HomeController{
         aktualizujPolohuHrace();});
         aktualizujSeznamVychodu();
         vlozSouradniceProstoru();
+        panelVychodu.setCellFactory(param -> new ListCellProstor());
     }
 
     private void vlozSouradniceProstoru() {
@@ -111,7 +112,7 @@ public class HomeController{
     private void klikPanelVychodu(MouseEvent mouseEvent) {
      Prostor cil = panelVychodu.getSelectionModel().getSelectedItem();
      if(cil==null)return;
-     String prikaz = PrikazJdi.NAZEV+ " " +cil;
+     String prikaz = PrikazJdi.NAZEV+ " " +cil.getNazev();
      zpracujPrikaz(prikaz);
 
     }

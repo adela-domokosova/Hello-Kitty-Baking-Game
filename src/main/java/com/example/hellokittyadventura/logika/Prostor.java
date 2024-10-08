@@ -208,11 +208,6 @@ public class Prostor {
         return false;
     }
 
-    @Override
-    public String toString() {
-        return getNazev();
-    }
-
     public Map<String, Vec> getVeci() {
         return this.veci;
     }
