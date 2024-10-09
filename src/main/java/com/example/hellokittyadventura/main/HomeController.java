@@ -12,13 +12,14 @@ import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class HomeController{
     @FXML
@@ -31,6 +32,7 @@ public class HomeController{
     private ImageView inv3;
     @FXML
     private ImageView inv4;
+    private List<ImageView> listInv = new ArrayList<>();
     @FXML
     private ListView<Vec> panelPredmetu;
     @FXML
@@ -64,6 +66,7 @@ public class HomeController{
     //rozdil od konstruktoru
     @FXML
     private void initialize(){
+        listInv.addAll(Arrays.asList(inv1, inv2, inv3, inv4));
         vystup.appendText(hra.vratUvitani()+"\n\n");
         vystup2.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
@@ -132,6 +135,7 @@ public class HomeController{
     private void aktualizujSeznamPredmetu(){
         seznamPredmetu.clear();
         seznamPredmetu.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
+        aktualizovatObrazkyInventar();
     }
 
     @FXML
@@ -237,6 +241,22 @@ public class HomeController{
         String rozkaz = "odemknout " + getSelectedString();
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
+    }
+
+    ///////////////////////////////////////////////
+    //change image in batoh
+    //zavolam si aktuali inventar
+    //forloop dvojta -> seznamVEci a seznam obrazkovych variables
+    @FXML
+    public void aktualizovatObrazkyInventar() {
+        for(Vec vec : seznamVeci){
+            for(ImageView img : listInv){
+                System.out.println("inventar/"+vec+".png");
+                Image newImage = new Image(getClass().getResourceAsStream("inventar/"+vec+".png"));
+                img.setImage(newImage);
+            }
+        }
+
     }
 
 }

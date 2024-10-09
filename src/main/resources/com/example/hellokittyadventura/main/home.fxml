@@ -61,8 +61,16 @@
                                  <Image url="@pngwing.com.png" />
                              </image>
                          </ImageView>
-                        <ImageView fx:id="inv3" fitHeight="79.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fx:id="inv4" fitHeight="65.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                         <ImageView fx:id="inv3" fitHeight="59.0" fitWidth="64.0" layoutX="172.0" layoutY="68.0">
+                             <image>
+                                 <Image url="@pngwing.com.png" />
+                             </image>
+                         </ImageView>
+                         <ImageView fx:id="inv4" fitHeight="59.0" fitWidth="64.0" layoutX="172.0" layoutY="68.0">
+                         <image>
+                             <Image url="@pngwing.com.png" />
+                         </image>
+                     </ImageView>
                      </children>
                      <VBox.margin>
                         <Insets />
