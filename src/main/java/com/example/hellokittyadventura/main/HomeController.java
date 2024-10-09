@@ -22,6 +22,7 @@ import java.util.Optional;
 public class HomeController{
     @FXML
     public ListView<String> panelRozkazu;
+    public TextArea vystup2;
     @FXML
     private ListView<Vec> panelPredmetu;
     @FXML
@@ -52,6 +53,7 @@ public class HomeController{
     @FXML
     private void initialize(){
         vystup.appendText(hra.vratUvitani()+"\n\n");
+        vystup2.appendText(hra.vratUvitani()+"\n\n");
         Platform.runLater(() -> vstup.requestFocus());
         panelVychodu.setItems(seznamVychodu);
         aktualizujSeznamPredmetu();
@@ -116,9 +118,12 @@ public class HomeController{
         }
 
         private void zpracujPrikaz(String prikaz) {
+        vystup2.clear();
             vystup.appendText("> " + prikaz + "\n");
             String vysledek = hra.zpracujPrikaz(prikaz);
             vystup.appendText(vysledek + "\n\n");
+            vystup2.appendText(vysledek + "\n\n");
+
         }
 
     @FXML
@@ -135,6 +140,8 @@ public class HomeController{
     private void aktualizujKonecHry() {
         if (hra.konecHry()) {
             vystup.appendText(hra.vratEpilog());
+            vystup2.appendText(hra.vratEpilog());
+
         }
             vstup.setDisable(true);
             tlacitkoOdesli.setDisable(true);
@@ -159,5 +166,15 @@ public class HomeController{
         napovedaStage.setScene(napovedaScena);
         napovedaStage.show();
         wv.getEngine().load(getClass().getResource("napoveda.html").toExternalForm());
+    }
+
+    //zjistit který item je vybraný
+
+
+    //klik na sebrat a odeslat rozkaz sebrat *item*
+    public void klikButtonSebrat(MouseEvent mouseEvent) {
+        String rozkaz = "seber skořice";
+        System.out.println(rozkaz);
+        zpracujPrikaz(rozkaz);
     }
 }
