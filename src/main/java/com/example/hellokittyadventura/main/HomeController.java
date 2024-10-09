@@ -44,11 +44,7 @@ public class HomeController{
     @FXML
     private ListView<Prostor> panelVychodu;
     @FXML
-    private Button tlacitkoOdesli;
-    @FXML
     private TextArea vystup;
-    @FXML
-    private TextField vstup;
     @FXML
     private ObservableList<Prostor> seznamVychodu = FXCollections.observableArrayList();
     @FXML
@@ -62,6 +58,7 @@ public class HomeController{
     @FXML
     private ObservableList<String> seznamRozkazu = FXCollections.observableArrayList();
 
+    private Vec none= new Vec("none", "none", false, false);
     private IHra hra = new Hra();
     private Inventar inv = new Inventar();
     private Map<String, Point2D> souradniceProstoru = new HashMap<>();
@@ -74,8 +71,8 @@ public class HomeController{
         listInv.addAll(Arrays.asList(inv1, inv2, inv3, inv4));
         vystup.appendText(hra.vratUvitani()+"\n\n");
         vystup2.appendText(hra.vratUvitani()+"\n\n");
-        Platform.runLater(() -> vstup.requestFocus());
         panelVychodu.setItems(seznamVychodu);
+        aktualizovatObrazkyInventar();
         aktualizujSeznamPredmetu();
         panelPredmetu.setItems(seznamPredmetu);
         aktualizujSeznamRozkazu();
@@ -150,15 +147,6 @@ public class HomeController{
     }
 
 
-    @FXML
-    private void odesliVstup(ActionEvent actionEvent) {
-        String prikaz = vstup.getText();
-        vstup.clear();
-
-        zpracujPrikaz(prikaz);
-
-        }
-
         private void zpracujPrikaz(String prikaz) {
         vystup2.clear();
             vystup.appendText("> " + prikaz + "\n");
@@ -195,8 +183,6 @@ public class HomeController{
             vystup2.appendText(hra.vratEpilog());
 
         }
-            vstup.setDisable(true);
-            tlacitkoOdesli.setDisable(true);
             panelVychodu.setDisable(true);
     }
 
@@ -258,14 +244,19 @@ public class HomeController{
     //forloop dvojta -> seznamVEci a seznam obrazkovych variables
     @FXML
     public void aktualizovatObrazkyInventar() {
-        for(Vec vec : seznamVeci){
-            for(ImageView img : listInv){
-                System.out.println("inventar/"+vec+".png");
-                Image newImage = new Image(getClass().getResourceAsStream("inventar/"+vec+".png"));
-                img.setImage(newImage);
-            }
+        int size = 4 - seznamVeci.size();
+        for(int i= 0; i < size+1; i++){
+            System.out.println("length:"+seznamVeci.size());
+            System.out.println("here:"+seznamVeci);
+            seznamVeci.add(none);
+        }
+
+        for(int i =0; i<4; i++){
+            Image newImage = new Image(getClass().getResourceAsStream("inventar/"+ seznamVeci.get(i) +".png"));
+            listInv.get(i).setImage(newImage);
+        }
         }
 
     }
 
-}
+
