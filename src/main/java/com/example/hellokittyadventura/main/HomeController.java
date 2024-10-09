@@ -2,6 +2,7 @@ package com.example.hellokittyadventura.main;
 
 import com.example.hellokittyadventura.logika.*;
 import javafx.application.Platform;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableArrayBase;
@@ -20,7 +21,16 @@ import java.util.Map;
 import java.util.Optional;
 
 public class HomeController{
-    public TextArea vystup2;
+    @FXML
+    private TextArea vystup2;
+    @FXML
+    private ImageView inv1;
+    @FXML
+    private ImageView inv2;
+    @FXML
+    private ImageView inv3;
+    @FXML
+    private ImageView inv4;
     @FXML
     private ListView<Vec> panelPredmetu;
     @FXML
@@ -39,11 +49,13 @@ public class HomeController{
     private ObservableList<Vec> seznamPredmetu = FXCollections.observableArrayList();
     @FXML
     private SimpleStringProperty selectedString = new SimpleStringProperty();
-
+    @FXML
+    private SimpleObjectProperty<Vec> selectedVec = new SimpleObjectProperty<>();
     @FXML
     private ObservableList<String> seznamRozkazu = FXCollections.observableArrayList();
 
     private IHra hra = new Hra();
+    private Inventar inv = new Inventar();
     private Map<String, Point2D> souradniceProstoru = new HashMap<>();
 
     //po vytvoření všech prvků FX se zavolá inicializátor,
@@ -77,6 +89,7 @@ public class HomeController{
         //vybranyPredmet();
         panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
+                selectedVec.set(newValue);
                 selectedString.set(newValue.getNazev());
             }});
 
@@ -151,6 +164,11 @@ public class HomeController{
         return selectedString.get();
     }
 
+    @FXML
+    private Vec getSelectedVec(){
+        return selectedVec.get();
+    }
+
     private void aktualizujKonecHry() {
         if (hra.konecHry()) {
             vystup.appendText(hra.vratEpilog());
@@ -203,9 +221,11 @@ public class HomeController{
         aktualizujSeznamPredmetu();
     }
 
-    public void klikButtonOdemknout(MouseEvent mouseEvent) {
+    @FXML
+    private void klikButtonOdemknout(MouseEvent mouseEvent) {
         String rozkaz = "odemknout " + getSelectedString();
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
     }
+
 }

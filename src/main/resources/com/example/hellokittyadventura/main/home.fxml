@@ -6,7 +6,6 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
@@ -31,21 +30,11 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <MenuBar GridPane.vgrow="NEVER">
-        <menus>
-          <Menu mnemonicParsing="false" text="Hra">
-            <items>
-              <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" text="Ukončit" />
-                <MenuItem onAction="#napovedaKlik" text="Nápověda" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <TitledPane text="Mapa" GridPane.rowIndex="1">
-         <content>
-            <HBox alignment="TOP_CENTER">
+      <HBox alignment="TOP_CENTER" GridPane.rowIndex="1">
+         <children>
+              <ListView fx:id="panelVychodu" onMouseClicked="#klikPanelVychodu" />
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                    <ListView fx:id="panelVychodu" onMouseClicked="#klikPanelVychodu" />
                   <Pane>
                      <children>
                         <ImageView fitHeight="254.0" fitWidth="344.0">
@@ -59,22 +48,45 @@
                            </image>
                         </ImageView>
                      </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
                   </Pane>
-                  <ListView fx:id="panelPredmetu" prefHeight="200.0" prefWidth="200.0" />
+                  <HBox>
+                     <children>
+                         <ImageView fx:id="inv1" fitHeight="59.0" fitWidth="64.0" layoutX="172.0" layoutY="68.0">
+                             <image>
+                                 <Image url="@inventar/jablka.png" />
+                             </image>
+                         </ImageView>
+                         <ImageView fx:id="inv2" fitHeight="59.0" fitWidth="64.0" layoutX="172.0" layoutY="68.0">
+                             <image>
+                                 <Image url="@pngwing.com.png" />
+                             </image>
+                         </ImageView>
+                        <ImageView fx:id="inv3" fitHeight="79.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true" />
+                        <ImageView fx:id="inv4" fitHeight="65.0" fitWidth="90.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
                </children>
-            </HBox>
-         </content>
-      </TitledPane>
-       <SplitPane GridPane.rowIndex="2">
-           <TextArea fx:id="vystup" editable="false">
-               <padding>
-                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </padding>
-           </TextArea>
-       </SplitPane>
+            </VBox>
+            <ListView fx:id="panelPredmetu" prefHeight="218.0" prefWidth="154.0" />
+         </children>
+      </HBox>
+      <MenuBar GridPane.vgrow="NEVER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Hra">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" text="Ukončit" />
+                <MenuItem onAction="#napovedaKlik" text="Nápověda" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <TitledPane alignment="CENTER" contentDisplay="TOP" text="Mapa" GridPane.rowIndex="4" />
       <HBox spacing="10.0" GridPane.rowIndex="4">
          <children>
             <TextField fx:id="vstup" onAction="#odesliVstup" HBox.hgrow="ALWAYS">
@@ -112,6 +124,11 @@
                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                              </padding>
                          </TextArea>
+                          <TextArea fx:id="vystup" editable="false">
+                              <padding>
+                                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                              </padding>
+                          </TextArea>
                         <HBox prefHeight="100.0" prefWidth="200.0">
                            <children>
                               <Button mnemonicParsing="false" onMouseClicked="#klikButtonSebrat" text="Sebrat" />

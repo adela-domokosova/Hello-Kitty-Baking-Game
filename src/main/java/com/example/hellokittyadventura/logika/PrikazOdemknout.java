@@ -19,7 +19,7 @@ public class PrikazOdemknout implements IPrikaz{
     public String provedPrikaz(String... parametry) {
         if (parametry.length == 0) {
             return "Co mám odemknout??";
-        } else if ((plan.getAktualniProstor().getNazev() == "zahrada" && plan.getInventar().getVeci().containsKey("klíč") && Objects.equals(parametry[0], "kurník"))){
+        } else if ((plan.getAktualniProstor().getNazev() == "zahrada" && plan.getInventar().getVeci().containsKey("klíč"))){
             //mám klíč,jsem na zahradě, odemykám správné dveře
             for(Prostor key: plan.getProstory().values()){
                 key.setJeZamcena(); //změni parametr "jeZamcena" místnosti a tím ji odemkne
