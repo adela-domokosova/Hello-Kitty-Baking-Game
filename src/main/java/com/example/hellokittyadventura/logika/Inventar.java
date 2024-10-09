@@ -1,11 +1,23 @@
 package com.example.hellokittyadventura.logika;
 
+import com.example.hellokittyadventura.main.Pozorovatel;
+import com.example.hellokittyadventura.main.PredmetPozorovani;
+import com.example.hellokittyadventura.main.ZmenaHry;
+
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
-public class Inventar {
+public class Inventar implements PredmetPozorovani {
     private Map<String, Vec> veci= new HashMap<>();
+    private Map<ZmenaHry, Set<Pozorovatel>> seznamPozorovatelu = new HashMap<>();
 
+    public Inventar() {
+        for(ZmenaHry zmenaHry : ZmenaHry.values()){
+            seznamPozorovatelu.put(zmenaHry, new HashSet<>());
+        }
+    }
 
     //kontrola max 4 věci v inventaři
     public Boolean jePlny() {
@@ -47,6 +59,7 @@ public class Inventar {
     /** Metoda vkládá věc do inventáře **/
     public void vlozVec(Vec vec){
         veci.put(vec.getNazev(), vec);
+        upozorneniPozorovatele(ZmenaHry.ZMENA_INVENTARE);
     }
     /** Metoda odebírá věc z inventáře **/
     public String odeberVec(String vec){
@@ -55,5 +68,15 @@ public class Inventar {
             return vec;
         }
         return null;
+    }
+
+    private void upozorneniPozorovatele(ZmenaHry zmenaHry) {
+        for(Pozorovatel pozorovatel : seznamPozorovatelu.get(zmenaHry)){
+            pozorovatel.aktualizuj();
+        }
+    }
+    @Override
+    public void registruj(ZmenaHry zmenaHry, Pozorovatel pozorovatel) {
+        seznamPozorovatelu.get(zmenaHry).add(pozorovatel);
     }
 }

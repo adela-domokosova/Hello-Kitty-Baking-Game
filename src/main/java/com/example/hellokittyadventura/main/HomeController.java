@@ -48,6 +48,8 @@ public class HomeController{
     @FXML
     private ObservableList<Vec> seznamPredmetu = FXCollections.observableArrayList();
     @FXML
+    private ObservableList<Vec> seznamVeci = FXCollections.observableArrayList();
+    @FXML
     private SimpleStringProperty selectedString = new SimpleStringProperty();
     @FXML
     private SimpleObjectProperty<Vec> selectedVec = new SimpleObjectProperty<>();
@@ -69,6 +71,9 @@ public class HomeController{
         aktualizujSeznamPredmetu();
         panelPredmetu.setItems(seznamPredmetu);
         aktualizujSeznamRozkazu();
+        hra.getHerniPlan().getInventar().registruj(ZmenaHry.ZMENA_INVENTARE, () -> {
+            aktualizujSeznamVeci();
+        });
         hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {
             aktualizujSeznamVychodu();
             aktualizujPolohuHrace();
@@ -106,6 +111,12 @@ public class HomeController{
     }
 
 
+    @FXML
+    private void aktualizujSeznamVeci(){
+        seznamVeci.clear();
+        seznamVeci.addAll(hra.getHerniPlan().getInventar().getVeci().values());
+        System.out.println(seznamVeci);
+    }
     @FXML
     private void aktualizujSeznamVychodu(){
         seznamVychodu.clear();
