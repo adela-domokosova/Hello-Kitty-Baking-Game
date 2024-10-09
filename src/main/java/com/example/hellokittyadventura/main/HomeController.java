@@ -78,20 +78,10 @@ public class HomeController{
 
         // Monitor the selected item
         panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            System.out.println("Selected item: " + newValue);});
+            if(newValue != null){System.out.println("Selected item: " + newValue);}});
     }
 
-    @FXML
-    private void addItem() {
-        int newItemNumber = panelPredmetu.getItems().size() + 1;
-        //panelPredmetu.getItems().add(newItemNumber);
-    }
 
-    @FXML
-    private void removeSelectedItem() {
-        String selectedItem = panelPredmetu.getSelectionModel().getSelectedItem().getNazev();
-        panelPredmetu.getItems().remove(selectedItem);
-    }
 
     private void vlozSouradniceProstoru() {
         souradniceProstoru.put("kuchyň", new Point2D(179,58));
