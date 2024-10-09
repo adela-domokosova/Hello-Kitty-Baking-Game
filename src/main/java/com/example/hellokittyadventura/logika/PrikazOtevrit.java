@@ -1,5 +1,6 @@
 package com.example.hellokittyadventura.logika;
 
+import java.util.List;
 import java.util.Objects;
 
 public class PrikazOtevrit implements IPrikaz{
@@ -20,6 +21,10 @@ public class PrikazOtevrit implements IPrikaz{
             return "Co mám otevřit?";
         } else if (plan.getAktualniProstor().getNazev() =="kuchyň" && Objects.equals(parametry[0], "lednice")) {
             plan.getAktualniProstor().getVeci().get("lednice").setProzkoumal(); //prozkoumal = true
+
+            //pridat do prostoru kuchyň
+            plan.getAktualniProstor().pridatVeci(plan.getAktualniProstor().getVeci().get("lednice").getVeciUvnitr().values());
+            //plan.getAktualniProstor().getVeci().get("lednice").odebratVeci(plan.getAktualniProstor().getVeci().get("lednice").getVeciUvnitr().values());
             return plan.getAktualniProstor().getVeci().get("lednice").vypisVeciUvnitr();
         }else{
             //špatný parametr nebo špatný aktualní prostor

@@ -179,6 +179,11 @@ public class Prostor {
         veci.put(vec.getNazev(), vec);
         return vec;
     }
+    public void pridatVeci(Collection<Vec> listVeci){
+        for(Vec vec: listVeci){
+            veci.put(vec.getNazev(),vec);
+        }
+    }
     /**Metoda odebírá věci (objekty) z prostoru/inventare
      * použito hlavně ve prikazSebrat **/
     public Vec odebratVec(String nazev) {

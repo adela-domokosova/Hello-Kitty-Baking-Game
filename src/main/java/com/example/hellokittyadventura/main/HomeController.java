@@ -137,6 +137,7 @@ public class HomeController{
     private void aktualizujSeznamPredmetu(){
         seznamPredmetu.clear();
         seznamPredmetu.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
+        System.out.println("test volani aktualizace př");
         aktualizovatObrazkyInventar();
     }
 
@@ -168,7 +169,6 @@ public class HomeController{
     }
 
     public String getSelectedString() {
-        System.out.println(selectedString + " kontrola");
         return selectedString.get();
     }
 
@@ -246,8 +246,6 @@ public class HomeController{
     public void aktualizovatObrazkyInventar() {
         int size = 4 - seznamVeci.size();
         for(int i= 0; i < size+1; i++){
-            System.out.println("length:"+seznamVeci.size());
-            System.out.println("here:"+seznamVeci);
             seznamVeci.add(none);
         }
 

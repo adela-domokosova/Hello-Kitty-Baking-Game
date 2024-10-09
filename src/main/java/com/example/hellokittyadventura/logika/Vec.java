@@ -1,6 +1,7 @@
 package com.example.hellokittyadventura.logika;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -57,6 +58,11 @@ public class Vec {
     public void pridatVecUvnitr(Vec vec){this.veciUvnitr.put(vec.getNazev(), vec);}//podobně jako předešlá metoda přidá věc do MAP
 
 
+    public void odebratVeci(Collection<Vec> listVeci){
+        for(Vec vec: listVeci){
+            veciUvnitr.remove(vec.getNazev());
+        }
+    }
 
     /**
      * Metoda slouží k vypsání předmětů, které jsou uloženy uvnitř věci - Ve hře použito pro předměty uvnitř lednice
