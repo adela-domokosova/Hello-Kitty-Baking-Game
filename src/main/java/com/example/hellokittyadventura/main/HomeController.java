@@ -120,7 +120,7 @@ public class HomeController{
     private void aktualizujSeznamVeci(){
         seznamVeci.clear();
         seznamVeci.addAll(hra.getHerniPlan().getInventar().getVeci().values());
-        System.out.println(seznamVeci);
+        aktualizovatObrazkyInventar();
     }
     @FXML
     private void aktualizujSeznamVychodu(){
@@ -136,8 +136,10 @@ public class HomeController{
     @FXML
     private void aktualizujSeznamPredmetu(){
         seznamPredmetu.clear();
+        System.out.println("test"+hra.getHerniPlan().getAktualniProstor().getVeci().values());
         seznamPredmetu.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
-        System.out.println("test volani aktualizace př");
+        System.out.println(hra.getHerniPlan().getAktualniProstor().getVeci().values());
+        System.out.println(seznamPredmetu);
         aktualizovatObrazkyInventar();
     }
 
@@ -227,6 +229,7 @@ public class HomeController{
     public void klikButtonOtevrit(MouseEvent mouseEvent) {
         String rozkaz = "otevrit " + getSelectedString();
         zpracujPrikaz(rozkaz);
+        hra.getHerniPlan().getInventar().odeberVec("klíč");
         aktualizujSeznamPredmetu();
     }
 
@@ -235,7 +238,14 @@ public class HomeController{
         String rozkaz = "odemknout " + getSelectedString();
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
+        aktualizujSeznamVeci();
         odemknout.setDisable(true);
+    }
+    public void klikButtonOdevzdat(MouseEvent mouseEvent) {
+        String rozkaz = "odevzdat";
+        zpracujPrikaz(rozkaz);
+        aktualizujSeznamPredmetu();
+        aktualizujSeznamVeci();
     }
 
     ///////////////////////////////////////////////
@@ -255,6 +265,6 @@ public class HomeController{
         }
         }
 
-    }
+}
 
 
