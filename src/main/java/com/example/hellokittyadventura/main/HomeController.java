@@ -27,8 +27,6 @@ public class HomeController{
     @FXML
     private Button odemknout;
     @FXML
-    private TextArea vystup2;
-    @FXML
     private ImageView inv1;
     @FXML
     private ImageView inv2;
@@ -70,7 +68,6 @@ public class HomeController{
         odemknout.setDisable(true);
         listInv.addAll(Arrays.asList(inv1, inv2, inv3, inv4));
         vystup.appendText(hra.vratUvitani()+"\n\n");
-        vystup2.appendText(hra.vratUvitani()+"\n\n");
         panelVychodu.setItems(seznamVychodu);
         aktualizovatObrazkyInventar();
         aktualizujSeznamPredmetu();
@@ -151,11 +148,11 @@ public class HomeController{
 
 
         private void zpracujPrikaz(String prikaz) {
-        vystup2.clear();
-            vystup.appendText("> " + prikaz + "\n");
+        vystup.clear();
+//            vystup.appendText("> " + prikaz + "\n");
             String vysledek = hra.zpracujPrikaz(prikaz);
             vystup.appendText(vysledek + "\n\n");
-            vystup2.appendText(vysledek + "\n\n");
+
 
         }
 
@@ -182,8 +179,6 @@ public class HomeController{
     private void aktualizujKonecHry() {
         if (hra.konecHry()) {
             vystup.appendText(hra.vratEpilog());
-            vystup2.appendText(hra.vratEpilog());
-
         }
             panelVychodu.setDisable(true);
     }

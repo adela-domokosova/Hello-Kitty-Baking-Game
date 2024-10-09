@@ -20,7 +20,7 @@ public class ListCellProstor extends ListCell<Prostor> {
         setGraphic(null);
         }else{
             Label label = new Label(prostor.getNazev());
-            label.setFont(Font.font("System", FontWeight.BOLD, 20));
+            label.setFont(Font.font("Buffalo", FontWeight.BOLD, 20));
             label.setTextFill(Color.WHITE);
             label.setStyle("-fx-text-fill: white; " +
                     "-fx-font-weight: bold; " +
