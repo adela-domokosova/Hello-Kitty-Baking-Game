@@ -73,6 +73,24 @@ public class HomeController{
         vlozSouradniceProstoru();
         panelVychodu.setCellFactory(param -> new ListCellProstor());
         panelPredmetu.setCellFactory(param -> new ListCellVec());
+        // Ensure single selection mode (this is the default behavior)
+        panelPredmetu.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.SINGLE);
+
+        // Monitor the selected item
+        panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            System.out.println("Selected item: " + newValue);});
+    }
+
+    @FXML
+    private void addItem() {
+        int newItemNumber = panelPredmetu.getItems().size() + 1;
+        //panelPredmetu.getItems().add(newItemNumber);
+    }
+
+    @FXML
+    private void removeSelectedItem() {
+        String selectedItem = panelPredmetu.getSelectionModel().getSelectedItem().getNazev();
+        panelPredmetu.getItems().remove(selectedItem);
     }
 
     private void vlozSouradniceProstoru() {
