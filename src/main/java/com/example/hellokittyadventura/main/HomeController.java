@@ -77,8 +77,13 @@ public class HomeController{
         panelPredmetu.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.SINGLE);
 
         // Monitor the selected item
+        //vybranyPredmet();
         panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if(newValue != null){System.out.println("Selected item: " + newValue);}});
+            if(newValue != null){
+                selectedString.set(newValue.getNazev());
+                System.out.println(newValue.getNazev());
+            }});
+
     }
 
 
@@ -145,6 +150,19 @@ public class HomeController{
 
     }
 
+//    @FXML
+//    private void vybranyPredmet(){
+//            panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+//            if(newValue != null){
+//                selectedString.set(newValue.getNazev());
+//            }});
+//    }
+    // Method to get the current selected string
+    public String getSelectedString() {
+        System.out.println(selectedString + " kontrola");
+        return selectedString.get();
+    }
+
     private void aktualizujKonecHry() {
         if (hra.konecHry()) {
             vystup.appendText(hra.vratEpilog());
@@ -162,7 +180,6 @@ public class HomeController{
      if(cil==null)return;
      String prikaz = PrikazJdi.NAZEV+ " " +cil.getNazev();
      zpracujPrikaz(prikaz);
-
     }
 
 
@@ -181,7 +198,8 @@ public class HomeController{
 
     //klik na sebrat a odeslat rozkaz sebrat *item*
     public void klikButtonSebrat(MouseEvent mouseEvent) {
-        String rozkaz = "seber skořice";
+        String rozkaz = "seber " + getSelectedString();
+        System.out.println(getSelectedString());
         System.out.println(rozkaz);
         zpracujPrikaz(rozkaz);
     }
