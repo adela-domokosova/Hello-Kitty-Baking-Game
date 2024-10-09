@@ -21,7 +21,11 @@ import javafx.stage.Stage;
 import java.lang.reflect.Array;
 import java.util.*;
 
+//null případy u obrázků v batohu
+
 public class HomeController{
+    @FXML
+    private Button odemknout;
     @FXML
     private TextArea vystup2;
     @FXML
@@ -66,6 +70,7 @@ public class HomeController{
     //rozdil od konstruktoru
     @FXML
     private void initialize(){
+        odemknout.setDisable(true);
         listInv.addAll(Arrays.asList(inv1, inv2, inv3, inv4));
         vystup.appendText(hra.vratUvitani()+"\n\n");
         vystup2.appendText(hra.vratUvitani()+"\n\n");
@@ -219,6 +224,9 @@ public class HomeController{
 
     //klik na sebrat a odeslat rozkaz sebrat *item*
     public void klikButtonSebrat(MouseEvent mouseEvent) {
+        if(getSelectedString() == "klíč"){
+            odemknout.setDisable(false);
+        }
         String rozkaz = "seber " + getSelectedString();
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
@@ -241,6 +249,7 @@ public class HomeController{
         String rozkaz = "odemknout " + getSelectedString();
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
+        odemknout.setDisable(true);
     }
 
     ///////////////////////////////////////////////

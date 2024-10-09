@@ -142,7 +142,7 @@
                               <Button mnemonicParsing="false" onMouseClicked="#klikButtonSebrat" text="Sebrat" />
                               <Button mnemonicParsing="false" onMouseClicked="#klikButtonZatrast" text="zatrast" />
                               <Button mnemonicParsing="false" onMouseClicked="#klikButtonOtevrit" text="otevrit" />
-                              <Button mnemonicParsing="false" onMouseClicked="#klikButtonOdemknout" text="odemknout" />
+                              <Button fx:id="odemknout" mnemonicParsing="false" onMouseClicked="#klikButtonOdemknout" text="odemknout" />
                            </children>
                         </HBox>
                      </children>
