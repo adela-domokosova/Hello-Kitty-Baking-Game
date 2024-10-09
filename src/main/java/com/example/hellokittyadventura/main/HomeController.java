@@ -235,11 +235,13 @@ public class HomeController{
 
     @FXML
     private void klikButtonOdemknout(MouseEvent mouseEvent) {
-        String rozkaz = "odemknout " + getSelectedString();
-        zpracujPrikaz(rozkaz);
-        aktualizujSeznamPredmetu();
-        aktualizujSeznamVeci();
-        odemknout.setDisable(true);
+        if(hra.getHerniPlan().getAktualniProstor().getNazev() == "zahrada"){
+            String rozkaz = "odemknout " + getSelectedString();
+            zpracujPrikaz(rozkaz);
+            aktualizujSeznamPredmetu();
+            aktualizujSeznamVeci();
+            odemknout.setDisable(true);
+        }
     }
     public void klikButtonOdevzdat(MouseEvent mouseEvent) {
         String rozkaz = "odevzdat";
