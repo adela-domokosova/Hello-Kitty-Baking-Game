@@ -188,5 +188,12 @@ public class HomeController{
     public void klikButtonSebrat(MouseEvent mouseEvent) {
         String rozkaz = "seber " + getSelectedString();
         zpracujPrikaz(rozkaz);
+        aktualizujSeznamPredmetu();
+    }
+
+    public void klikButtonZatrast(MouseEvent mouseEvent) {
+        String rozkaz = "zatrast " + getSelectedString();
+        zpracujPrikaz(rozkaz);
+        aktualizujSeznamPredmetu();
     }
 }
