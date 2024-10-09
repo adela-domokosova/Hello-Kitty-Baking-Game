@@ -196,4 +196,16 @@ public class HomeController{
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
     }
+
+    public void klikButtonOtevrit(MouseEvent mouseEvent) {
+        String rozkaz = "otevrit " + getSelectedString();
+        zpracujPrikaz(rozkaz);
+        aktualizujSeznamPredmetu();
+    }
+
+    public void klikButtonOdemknout(MouseEvent mouseEvent) {
+        String rozkaz = "odemknout " + getSelectedString();
+        zpracujPrikaz(rozkaz);
+        aktualizujSeznamPredmetu();
+    }
 }
