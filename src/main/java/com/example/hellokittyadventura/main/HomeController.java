@@ -20,8 +20,6 @@ import java.util.Map;
 import java.util.Optional;
 
 public class HomeController{
-    @FXML
-    public ListView<String> panelRozkazu;
     public TextArea vystup2;
     @FXML
     private ListView<Vec> panelPredmetu;
@@ -59,7 +57,6 @@ public class HomeController{
         aktualizujSeznamPredmetu();
         panelPredmetu.setItems(seznamPredmetu);
         aktualizujSeznamRozkazu();
-        panelRozkazu.setItems(seznamRozkazu);
         hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {
             aktualizujSeznamVychodu();
             aktualizujPolohuHrace();
@@ -81,7 +78,6 @@ public class HomeController{
         panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null){
                 selectedString.set(newValue.getNazev());
-                System.out.println(newValue.getNazev());
             }});
 
     }
@@ -150,14 +146,6 @@ public class HomeController{
 
     }
 
-//    @FXML
-//    private void vybranyPredmet(){
-//            panelPredmetu.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-//            if(newValue != null){
-//                selectedString.set(newValue.getNazev());
-//            }});
-//    }
-    // Method to get the current selected string
     public String getSelectedString() {
         System.out.println(selectedString + " kontrola");
         return selectedString.get();
@@ -199,8 +187,6 @@ public class HomeController{
     //klik na sebrat a odeslat rozkaz sebrat *item*
     public void klikButtonSebrat(MouseEvent mouseEvent) {
         String rozkaz = "seber " + getSelectedString();
-        System.out.println(getSelectedString());
-        System.out.println(rozkaz);
         zpracujPrikaz(rozkaz);
     }
 }
