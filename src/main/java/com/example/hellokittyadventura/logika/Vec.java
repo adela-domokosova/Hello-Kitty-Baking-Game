@@ -63,6 +63,9 @@ public class Vec {
             veciUvnitr.remove(vec.getNazev());
         }
     }
+    public void odebratVec(String str){
+        veciUvnitr.remove(str);
+    }
 
     /**
      * Metoda slouží k vypsání předmětů, které jsou uloženy uvnitř věci - Ve hře použito pro předměty uvnitř lednice

@@ -215,7 +215,10 @@ public class HomeController{
             odemknout.setDisable(false);
         }
         String rozkaz = "seber " + getSelectedString();
-        System.out.println(hra.getHerniPlan().getInventar().getVeci() + " muj inventar");
+        //jestli lednice obsahuje toto vymaž to
+        if(hra.getHerniPlan().getAktualniProstor().getNazev()=="kuchyň" && hra.getHerniPlan().getProstory().get("kuchyň").getVeci().get("lednice").vecObsahujeVec(getSelectedString())){
+            hra.getHerniPlan().getAktualniProstor().getVeci().get("lednice").odebratVec(getSelectedString());
+        }
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
         System.out.println(hra.getHerniPlan().getInventar().getVeci() + " muj inventar 2");
