@@ -90,9 +90,11 @@ public class PrikazSebrat implements IPrikaz{
             //vejce jsou k dispozici, ale není je kam uložit
             return "Máš plný inventář, vrať se, až budeš mít místo";
         }
+        System.out.println("HEREEEEEEEEEEEE KLOW");
         // hodnota indexu slouží k určení, které vejce se hráči přidá do inventáře
         //přidává se pomocí metody v herním plánu getListVejce()
         plan.getInventar().vlozVec(plan.getListVejce().get(this.index));
+
         this.index ++;
         return "ziskal jsi vejce";
         }

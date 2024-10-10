@@ -25,6 +25,8 @@ import java.util.*;
 
 public class HomeController{
     @FXML
+    private Button sbiratVejce;
+    @FXML
     private Button odemknout;
     @FXML
     private ImageView inv1;
@@ -66,6 +68,7 @@ public class HomeController{
     @FXML
     private void initialize(){
         odemknout.setDisable(true);
+        kontrolaDisableButtonSbiratVejce();
         listInv.addAll(Arrays.asList(inv1, inv2, inv3, inv4));
         vystup.appendText(hra.vratUvitani()+"\n\n");
         panelVychodu.setItems(seznamVychodu);
@@ -127,6 +130,7 @@ public class HomeController{
 
     private void aktualizujPolohuHrace(){
         String prostor = hra.getHerniPlan().getAktualniProstor().getNazev();
+        kontrolaDisableButtonSbiratVejce();
         hrac.setLayoutX(souradniceProstoru.get(prostor).getX());
         hrac.setLayoutY(souradniceProstoru.get(prostor).getY());
     }
@@ -135,7 +139,6 @@ public class HomeController{
         seznamPredmetu.clear();
         System.out.println("test"+hra.getHerniPlan().getAktualniProstor().getVeci().values());
         seznamPredmetu.addAll(hra.getHerniPlan().getAktualniProstor().getVeci().values());
-        System.out.println(hra.getHerniPlan().getAktualniProstor().getVeci().values());
         System.out.println(seznamPredmetu);
         aktualizovatObrazkyInventar();
     }
@@ -212,8 +215,11 @@ public class HomeController{
             odemknout.setDisable(false);
         }
         String rozkaz = "seber " + getSelectedString();
+        System.out.println(hra.getHerniPlan().getInventar().getVeci() + " muj inventar");
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
+        System.out.println(hra.getHerniPlan().getInventar().getVeci() + " muj inventar 2");
+
     }
 
     public void klikButtonZatrast(MouseEvent mouseEvent) {
@@ -249,7 +255,23 @@ public class HomeController{
         aktualizujSeznamPredmetu();
         aktualizujSeznamVeci();
     }
+    @FXML
+    private void kontrolaDisableButtonSbiratVejce(){
+        if(hra.getHerniPlan().getAktualniProstor().getNazev() != "kurník"){
+            sbiratVejce.setDisable(true);
+            System.out.println("print true");
+        }else{
+            sbiratVejce.setDisable(false);
+        }
+    }
 
+@FXML
+    private void klikButtonSbiratVejce(MouseEvent mouseEvent) {
+        String rozkaz = "seber vejce";
+        zpracujPrikaz(rozkaz);
+        aktualizujSeznamPredmetu();
+        aktualizujSeznamVeci();
+    }
     ///////////////////////////////////////////////
     //change image in batoh
     //zavolam si aktuali inventar
@@ -266,6 +288,7 @@ public class HomeController{
             listInv.get(i).setImage(newImage);
         }
         }
+
 
 }
 
