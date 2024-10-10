@@ -21,9 +21,11 @@ public class PrikazOtevrit implements IPrikaz{
             return "Co mám otevřit?";
         } else if (plan.getAktualniProstor().getNazev() =="kuchyň" && Objects.equals(parametry[0], "lednice")) {
             plan.getAktualniProstor().getVeci().get("lednice").setProzkoumal(); //prozkoumal = true
-
+            System.out.println(plan.getAktualniProstor().getVeci() + " otevrit 1");
             //pridat do prostoru kuchyň
             plan.getAktualniProstor().pridatVeci(plan.getAktualniProstor().getVeci().get("lednice").getVeciUvnitr().values());
+            System.out.println(plan.getAktualniProstor().getVeci()+ " otevrit2");
+
             //plan.getAktualniProstor().getVeci().get("lednice").odebratVeci(plan.getAktualniProstor().getVeci().get("lednice").getVeciUvnitr().values());
             return plan.getAktualniProstor().getVeci().get("lednice").vypisVeciUvnitr();
         }else{

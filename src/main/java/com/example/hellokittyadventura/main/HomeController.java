@@ -152,6 +152,7 @@ public class HomeController{
 //            vystup.appendText("> " + prikaz + "\n");
             String vysledek = hra.zpracujPrikaz(prikaz);
             vystup.appendText(vysledek + "\n\n");
+            vystup.appendText(vysledek + "\n\n");
 
 
         }
@@ -231,11 +232,15 @@ public class HomeController{
     @FXML
     private void klikButtonOdemknout(MouseEvent mouseEvent) {
         if(hra.getHerniPlan().getAktualniProstor().getNazev() == "zahrada"){
+
             String rozkaz = "odemknout " + getSelectedString();
             zpracujPrikaz(rozkaz);
             aktualizujSeznamPredmetu();
             aktualizujSeznamVeci();
             odemknout.setDisable(true);
+        }else{
+            String vysledek = "musíš jít k zamknutým dveřím";
+            vystup.appendText(vysledek + "\n\n");
         }
     }
     public void klikButtonOdevzdat(MouseEvent mouseEvent) {
