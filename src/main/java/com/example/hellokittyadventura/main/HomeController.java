@@ -15,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.web.WebView;
 import javafx.stage.Stage;
 
@@ -24,6 +25,10 @@ import java.util.*;
 //null případy u obrázků v batohu
 
 public class HomeController{
+    @FXML
+    private HBox interakceProstory;
+    @FXML
+    private HBox interakcePredmety;
     @FXML
     private Button sbiratVejce;
     @FXML
@@ -36,6 +41,7 @@ public class HomeController{
     private ImageView inv3;
     @FXML
     private ImageView inv4;
+    @FXML
     private List<ImageView> listInv = new ArrayList<>();
     @FXML
     private ListView<Vec> panelPredmetu;
@@ -182,6 +188,10 @@ public class HomeController{
             vystup.appendText(hra.vratEpilog());
         }
             panelVychodu.setDisable(true);
+            panelPredmetu.setDisable(true);
+            interakceProstory.setDisable(true);
+            interakcePredmety.setDisable(true);
+
     }
 
     @FXML
