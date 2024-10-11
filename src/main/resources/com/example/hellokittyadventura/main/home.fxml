@@ -120,12 +120,12 @@
             </VBox>
          </children>
       </HBox>
-      <MenuBar GridPane.vgrow="NEVER">
+      <MenuBar style="-fx-background-color: hotpink; -fx-text-fill: white;" GridPane.vgrow="NEVER">
         <menus>
-          <Menu mnemonicParsing="false" text="Hra">
+          <Menu style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" text="Hra">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" text="Ukončit" />
-                <MenuItem onAction="#napovedaKlik" text="Nápověda" />
+              <MenuItem style="-fx-background-color: pink; -fx-text-fill: white;" mnemonicParsing="false" onAction="#ukoncitHru" text="Ukončit" />
+                <MenuItem style="-fx-background-color: pink; -fx-text-fill: white;" onAction="#napovedaKlik" text="Nápověda" />
             </items>
           </Menu>
         </menus>
