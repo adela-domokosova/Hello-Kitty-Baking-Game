@@ -148,9 +148,9 @@
                         </Text>
                         <HBox fx:id="interakceProstory" prefHeight="100.0" prefWidth="169.0" spacing="10.0">
                            <children>
-                              <Button style="-fx-background-color: fuchsia; -fx-text-fill: white;" fx:id="odemknout" mnemonicParsing="false" onMouseClicked="#klikButtonOdemknout" text="Odemknout" />
-                              <Button style="-fx-background-color: fuchsia; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonOdevzdat" text="Odevzdat" />
-                              <Button style="-fx-background-color: fuchsia; -fx-text-fill: white;" fx:id="sbiratVejce" mnemonicParsing="false" onMouseClicked="#klikButtonSbiratVejce" text="Sbírat vejce" />
+                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" fx:id="odemknout" mnemonicParsing="false" onMouseClicked="#klikButtonOdemknout" text="Odemknout" />
+                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonOdevzdat" text="Odevzdat" />
+                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" fx:id="sbiratVejce" mnemonicParsing="false" onMouseClicked="#klikButtonSbiratVejce" text="Sbírat vejce" />
                            </children>
                         </HBox>
                      </children>
@@ -164,9 +164,9 @@
                         </Text>
                         <HBox fx:id="interakcePredmety" prefHeight="35.0" prefWidth="184.0" spacing="10.0">
                            <children>
-                              <Button style="-fx-background-color: fuchsia; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonSebrat" text="Sebrat" />
-                              <Button style="-fx-background-color: fuchsia; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonZatrast" text="Zatřást" />
-                              <Button style="-fx-background-color: fuchsia; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonOtevrit" text="Otevřít" />
+                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonSebrat" text="Sebrat" />
+                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonZatrast" text="Zatřást" />
+                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonOtevrit" text="Otevřít" />
                            </children>
                         </HBox>
                      </children>
