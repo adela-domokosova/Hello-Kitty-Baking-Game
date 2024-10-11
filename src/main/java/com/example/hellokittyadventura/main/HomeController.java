@@ -155,9 +155,6 @@ public class HomeController{
 //            vystup.appendText("> " + prikaz + "\n");
             String vysledek = hra.zpracujPrikaz(prikaz);
             vystup.appendText(vysledek + "\n\n");
-            vystup.appendText(vysledek + "\n\n");
-
-
         }
 
     @FXML
@@ -221,8 +218,6 @@ public class HomeController{
         }
         zpracujPrikaz(rozkaz);
         aktualizujSeznamPredmetu();
-        System.out.println(hra.getHerniPlan().getInventar().getVeci() + " muj inventar 2");
-
     }
 
     public void klikButtonZatrast(MouseEvent mouseEvent) {
