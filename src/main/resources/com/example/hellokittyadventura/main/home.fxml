@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<GridPane style="-fx-background-color: pink;" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellokittyadventura.main.HomeController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellokittyadventura.main.HomeController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
   </columnConstraints>
@@ -31,7 +31,7 @@
          <children>
             <VBox prefHeight="400.0" prefWidth="190.0">
                <children>
-                  <Text style="-fx-font-weight: bold;" strokeType="OUTSIDE" strokeWidth="0.0" text="Vstutupy do prostorů">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Vstutupy do prostorů">
                      <VBox.margin>
                         <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
@@ -66,7 +66,7 @@
                            <Insets />
                         </opaqueInsets>
                   </Pane>
-                     <Text style="-fx-font-weight: bold;" layoutX="82.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inventář" />
+                     <Text layoutX="82.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Inventář" />
                      <opaqueInsets>
                         <Insets left="-40.0" right="40.0" />
                      </opaqueInsets>
@@ -103,7 +103,7 @@
             </VBox>
             <VBox prefHeight="400.0" prefWidth="148.0">
                <children>
-                  <Text style="-fx-font-weight: bold;" strokeType="OUTSIDE" strokeWidth="0.0" text="Věci v aktualním prostoru">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Věci v aktualním prostoru">
                      <VBox.margin>
                         <Insets bottom="5.0" top="10.0" />
                      </VBox.margin>
@@ -122,15 +122,15 @@
       </HBox>
       <MenuBar style="-fx-background-color: hotpink; -fx-text-fill: white;" GridPane.vgrow="NEVER">
         <menus>
-          <Menu style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" text="Hra">
+          <Menu mnemonicParsing="false" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Hra">
             <items>
-              <MenuItem style="-fx-background-color: pink; -fx-text-fill: white;" mnemonicParsing="false" onAction="#ukoncitHru" text="Ukončit" />
-                <MenuItem style="-fx-background-color: pink; -fx-text-fill: white;" onAction="#napovedaKlik" text="Nápověda" />
+              <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" style="-fx-background-color: pink; -fx-text-fill: white;" text="Ukončit" />
+                <MenuItem onAction="#napovedaKlik" style="-fx-background-color: pink; -fx-text-fill: white;" text="Nápověda" />
             </items>
           </Menu>
         </menus>
       </MenuBar>
-      <HBox prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+      <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
          <children>
             <Pane prefHeight="120.0" prefWidth="802.0">
                <children>
@@ -141,32 +141,32 @@
                     </TextArea>
                   <VBox layoutX="14.0" prefHeight="200.0" prefWidth="254.0">
                      <children>
-                        <Text style="-fx-font-weight: bold;" strokeType="OUTSIDE" strokeWidth="0.0" text="Interakce v prostorech">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Interakce v prostorech">
                            <VBox.margin>
                               <Insets bottom="2.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
                         <HBox fx:id="interakceProstory" prefHeight="100.0" prefWidth="169.0" spacing="10.0">
                            <children>
-                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" fx:id="odemknout" mnemonicParsing="false" onMouseClicked="#klikButtonOdemknout" text="Odemknout" />
-                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonOdevzdat" text="Odevzdat" />
-                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" fx:id="sbiratVejce" mnemonicParsing="false" onMouseClicked="#klikButtonSbiratVejce" text="Sbírat vejce" />
+                              <Button fx:id="odemknout" mnemonicParsing="false" onMouseClicked="#klikButtonOdemknout" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Odemknout" />
+                              <Button mnemonicParsing="false" onMouseClicked="#klikButtonOdevzdat" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Odevzdat" />
+                              <Button fx:id="sbiratVejce" mnemonicParsing="false" onMouseClicked="#klikButtonSbiratVejce" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Sbírat vejce" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
                   <VBox layoutX="590.0" layoutY="3.0" prefHeight="59.0" prefWidth="186.0">
                      <children>
-                        <Text style="-fx-font-weight: bold;" strokeType="OUTSIDE" strokeWidth="0.0" text="Interakce s předměty">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Interakce s předměty">
                            <VBox.margin>
                               <Insets bottom="2.0" right="5.0" top="5.0" />
                            </VBox.margin>
                         </Text>
                         <HBox fx:id="interakcePredmety" prefHeight="35.0" prefWidth="184.0" spacing="10.0">
                            <children>
-                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonSebrat" text="Sebrat" />
-                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonZatrast" text="Zatřást" />
-                              <Button style="-fx-background-color: hotpink; -fx-text-fill: white;" mnemonicParsing="false" onMouseClicked="#klikButtonOtevrit" text="Otevřít" />
+                              <Button mnemonicParsing="false" onMouseClicked="#klikButtonSebrat" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Sebrat" />
+                              <Button mnemonicParsing="false" onMouseClicked="#klikButtonZatrast" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Zatřást" />
+                              <Button mnemonicParsing="false" onMouseClicked="#klikButtonOtevrit" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Otevřít" />
                            </children>
                         </HBox>
                      </children>
