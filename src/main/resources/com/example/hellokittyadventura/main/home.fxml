@@ -126,6 +126,8 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" style="-fx-background-color: pink; -fx-text-fill: white;" text="Ukončit" />
                 <MenuItem onAction="#napovedaKlik" style="-fx-background-color: pink; -fx-text-fill: white;" text="Nápověda" />
+                <MenuItem mnemonicParsing="false" onAction="#restartHru" style="-fx-background-color: pink; -fx-text-fill: white;" text="Restart" />
+
             </items>
           </Menu>
         </menus>

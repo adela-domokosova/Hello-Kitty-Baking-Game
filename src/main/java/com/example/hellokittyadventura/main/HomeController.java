@@ -297,6 +297,48 @@ public class HomeController{
         }
 
 
-}
+        @FXML
+    private void restartHru(ActionEvent actionEvent) {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Are you sure you want to restart the current game?");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                // Inicializovat novou instanci hry
+                hra = new Hra();
+
+                // Obnovení vazeb a výchozího nastavení
+                hra.getHerniPlan().getInventar().registruj(ZmenaHry.ZMENA_INVENTARE, () -> {
+                    aktualizujSeznamVeci();
+                });
+                hra.getHerniPlan().registruj(ZmenaHry.ZMENA_MISTNOSTI, () -> {
+                    aktualizujSeznamVychodu();
+                    aktualizujPolohuHrace();
+                    aktualizujSeznamPredmetu();
+                });
+                hra.registruj(ZmenaHry.KONEC_HRY, () -> {
+                    aktualizujKonecHry();
+                    aktualizujPolohuHrace();
+                });
+
+                // Obnovení UI na výchozí stav
+                aktualizujSeznamVeci();
+                vystup.clear();
+                vystup.appendText(hra.vratUvitani() + "\n\n");
+
+                // Aktualizace všech seznamů a grafických prvků
+                aktualizujSeznamVychodu();
+                aktualizujSeznamPredmetu();
+                aktualizujSeznamRozkazu();
+                aktualizovatObrazkyInventar();
+                aktualizujPolohuHrace();
+
+                panelVychodu.setDisable(false);
+                panelPredmetu.setDisable(false);
+                interakceProstory.setDisable(false);
+                interakcePredmety.setDisable(false);
+                odemknout.setDisable(true);
+                kontrolaDisableButtonSbiratVejce();
+            }
+}}
 
 
