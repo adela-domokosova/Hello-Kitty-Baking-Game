@@ -65,7 +65,6 @@ public class HomeController{
 
     private Vec none= new Vec("none", "none", false, false);
     private IHra hra = new Hra();
-    private Inventar inv = new Inventar();
     private Map<String, Point2D> souradniceProstoru = new HashMap<>();
 
     //po vytvoření všech prvků FX se zavolá inicializátor,
@@ -113,11 +112,11 @@ public class HomeController{
 
 
     private void vlozSouradniceProstoru() {
-        souradniceProstoru.put("kuchyň", new Point2D(179,58));
-        souradniceProstoru.put("spižírna", new Point2D(259,20));
-        souradniceProstoru.put("zahrada", new Point2D(97,98));
-        souradniceProstoru.put("kurník", new Point2D(101,181));
-        souradniceProstoru.put("mlýn", new Point2D(20,60));
+        souradniceProstoru.put("kuchyň", new Point2D(228,58));
+        souradniceProstoru.put("spižírna", new Point2D(305,20));
+        souradniceProstoru.put("zahrada", new Point2D(147,98));
+        souradniceProstoru.put("kurník", new Point2D(150,181));
+        souradniceProstoru.put("mlýn", new Point2D(74,58));
     }
 
 
