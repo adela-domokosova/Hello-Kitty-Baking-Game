@@ -124,9 +124,9 @@
         <menus>
           <Menu mnemonicParsing="false" style="-fx-background-color: hotpink; -fx-text-fill: white;" text="Hra">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" style="-fx-background-color: pink; -fx-text-fill: white;" text="Ukončit" />
-                <MenuItem onAction="#napovedaKlik" style="-fx-background-color: pink; -fx-text-fill: white;" text="Nápověda" />
-                <MenuItem mnemonicParsing="false" onAction="#restartHru" style="-fx-background-color: pink; -fx-text-fill: white;" text="Restart" />
+              <MenuItem mnemonicParsing="false" onAction="#ukoncitHru" style="-fx-text-fill: black;" text="Ukončit" />
+                <MenuItem onAction="#napovedaKlik" style="-fx-text-fill: black;" text="Nápověda" />
+                <MenuItem mnemonicParsing="false" onAction="#restartHru" style="-fx-text-fill: black;" text="Restart" />
 
             </items>
           </Menu>
