@@ -185,11 +185,18 @@ public class HomeController{
         if (hra.konecHry()) {
             vystup.appendText(hra.vratEpilog());
         }
+
             panelVychodu.setDisable(true);
             panelPredmetu.setDisable(true);
             interakceProstory.setDisable(true);
             interakcePredmety.setDisable(true);
 
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION, hra.vratEpilog()+"\n\n"+"Chceš hrát znova?");
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            restart();
+        }
     }
 
     @FXML
@@ -302,6 +309,10 @@ public class HomeController{
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.isPresent() && result.get() == ButtonType.OK) {
+                restart();
+            }}
+            @FXML
+        private void restart(){
                 // Inicializovat novou instanci hry
                 hra = new Hra();
 
@@ -338,6 +349,6 @@ public class HomeController{
                 odemknout.setDisable(true);
                 kontrolaDisableButtonSbiratVejce();
             }
-}}
+}
 
 
